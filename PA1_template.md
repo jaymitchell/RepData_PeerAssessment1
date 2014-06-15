@@ -161,3 +161,24 @@ data, the days where the person fell short of the 10,000 step goal are being
 pushed over the top by the imputed values.
 
 ## Are there differences in activity patterns between weekdays and weekends?
+
+Add a weektime factor to the dataset.
+
+
+```r
+week_data = data_without_na
+week_data$weektime <- as.factor(
+        ifelse(weekdays(as.Date(week_data$date)) %in% 
+                       c("Saturday","Sunday"), "weekend", "weekday"))
+steps_per_weektime = aggregate(steps~interval+weektime, week_data, mean)
+```
+
+Plot weekdays versus weekends.
+
+
+```r
+xyplot(steps ~ interval | weektime, data=steps_per_weektime, type="l",
+       ylab="Number of steps")
+```
+
+![plot of chunk weekdays_versus_weekends](figure/weekdays_versus_weekends.png) 
