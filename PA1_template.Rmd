@@ -21,7 +21,29 @@ raw_data = read.csv(extracted_filename)
 
 ## What is mean total number of steps taken per day?
 
+Group the number of steps taken per day.
 
+```{r steps_per_day}
+steps_per_day = aggregate(steps ~ date, raw_data, sum)
+```
+
+### Histogram
+
+```{r steps_per_day_hist}
+hist(steps_per_day$steps, main="Histogram of number of steps per day", xlab="Steps per day", breaks=8)
+```
+
+### Mean
+
+```{r steps_per_day_mean}
+mean(steps_per_day$steps)
+```
+
+### Median
+
+```{r steps_per_day_median}
+median(steps_per_day$steps)
+```
 
 ## What is the average daily activity pattern?
 
