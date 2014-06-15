@@ -1,20 +1,24 @@
 # Reproducible Research: Peer Assessment 1
 
-```{r setoptions,echo=FALSE}
-opts_chunk$set(echo=TRUE)
-```
+
 
 ## Loading and preprocessing the data
 
 Extract the data if it is not already extracted.
 
-```{r extract}
+
+```r
 unzip(paste("data", "activity.zip", sep="/"), exdir="data", overwrite=FALSE)
+```
+
+```
+## Warning: not overwriting file 'data/activity.csv
 ```
 
 Read the data from the extracted file.
 
-```{r read_data}
+
+```r
 extracted_filename = paste("data", "activity.csv", sep="/")
 raw_data = read.csv(extracted_filename)
 ```
