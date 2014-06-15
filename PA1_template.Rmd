@@ -70,5 +70,41 @@ steps_per_interval[row_with_most_average_steps,]$interval
 
 ## Imputing missing values
 
+The number of rows that don't have steps:
+
+```{r na_count}
+nrow(subset(raw_data, is.na(raw_data$steps)))
+```
+
+The NA values will be imputed using the mean number of steps per interval for
+the day:
+
+```{r mean_steps}
+mean_steps <- mean(data_without_na$steps)
+imputed_data <- raw_data
+imputed_data$steps[is.na(imputed_data$steps)] <- mean_steps
+imputed_steps_per_day = aggregate(steps ~ date, imputed_data, sum)
+```
+
+### Histogram
+
+```{r imputed_steps_per_day_hist}
+hist(imputed_steps_per_day$steps, main="Histogram of number of steps per day", xlab="Steps per day", breaks=8)
+```
+
+### Mean
+
+```{r imputed_steps_per_day_mean}
+mean(imputed_steps_per_day$steps)
+```
+
+### Median
+
+```{r imputed_steps_per_day_median}
+median(imputed_steps_per_day$steps)
+```
+
+When compared with the mean and median of the raw data, this doesn't affect
+the output hardly at all. That is not what I was expecting.
 
 ## Are there differences in activity patterns between weekdays and weekends?
