@@ -150,6 +150,14 @@ median(imputed_steps_per_day$steps)
 ## [1] 10766
 ```
 
+When compared with the mean and median of the raw data, this doesn't affect
+the output hardly at all. That is not what I was expecting.
 
+When comparing the histogram of the imputed values, the histogram does show an
+increase in days that have 10,000 steps. I think this makes sense because if
+you look at the original histogram of the raw data, it seems not to be a pure
+bell curve, but shifted to emphasize the 10,000 step section. With the imputed
+data, the days where the person fell short of the 10,000 step goal are being
+pushed over the top by the imputed values.
 
 ## Are there differences in activity patterns between weekdays and weekends?
